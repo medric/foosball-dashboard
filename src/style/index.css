@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+.container {
+  display: flex; }
+
+.column {
+  flex-direction: column; }
+
+.fs-form {
+  width: 500px;
+  margin: auto; }
+
+.fs-form form {
+  width: 100%; }
+
+.fs-form form > div {
+  width: inherit !important;
+  margin-top: 10px; }
+
+.Select-menu-outer {
+  z-index: 9999; }
