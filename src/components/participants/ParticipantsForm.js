@@ -21,6 +21,10 @@ class ParticipantsForm extends Component {
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
+  reset() {
+    this.setState(initialState);
+  }
+
   handleChange(e, newValue) {
     this.setState({name: newValue});
   }
@@ -34,12 +38,12 @@ class ParticipantsForm extends Component {
         name,
       });
 
-      this.setState({name: '', participantAdded: true});
+      this.setState({participantAdded: true});
     }
   }
 
   handleRequestClose() {
-    this.setState({name: '', participantAdded: false});
+    this.reset();
   }
 
   render() {
@@ -68,7 +72,7 @@ class ParticipantsForm extends Component {
         <Snackbar
           open={this.state.participantAdded}
           message="Participant added"
-          autoHideDuration={4000}
+          autoHideDuration={1000}
           onRequestClose={this.handleRequestClose}
         />
       </div>

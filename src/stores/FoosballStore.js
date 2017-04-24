@@ -1,3 +1,7 @@
+/**
+ * MobX store
+ * 
+ */
 import { extendObservable, computed } from 'mobx';
 
 class FoosballStore {
@@ -20,6 +24,7 @@ class FoosballStore {
                 this.participants.push(participant);
             },
             addMatch(match) {
+                this.matches.push(match);
             },
             getCompletedMatches() {
             }
