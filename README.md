@@ -27,22 +27,3 @@ Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 Run ```npm test```
 
 Launches the test runner in the interactive watch mode.<br>
-
-## Folder Structure
-
-The project should look like this:
-
-```
-my-app/
-  README.md
-  node_modules/
-  package.json
-  public/
-    index.html
-    favicon.ico
-  src/
-    components/
-    stores/
-    style/
-    tests/
-```
