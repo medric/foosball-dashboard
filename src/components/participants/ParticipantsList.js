@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn }
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow }
   from 'material-ui/Table';
 import Participant from './Participant';
 
@@ -29,6 +29,7 @@ const ParticipantsList = (props) => {
                         store.participants.map(
                             (participant, index) => 
                                 <Participant 
+                                    key={index}
                                     {...participant}
                                     {...store.getWinsLosses(participant._id)} 
                                 />

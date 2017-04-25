@@ -2,7 +2,7 @@
  * MobX store
  * Handle state management and reactivty
  */
-import { extendObservable, computed } from 'mobx';
+import { extendObservable } from 'mobx';
 import autoSave from './autoSave';
 import { commonElements } from '../utils';
 

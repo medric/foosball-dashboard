@@ -3,8 +3,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
 import AppBar from 'material-ui/AppBar';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import Footer from './Footer';
 import ParticipantsList from './participants/ParticipantsList';
 import ParticipantsForm from './participants/ParticipantsForm';

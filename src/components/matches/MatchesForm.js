@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Link } from 'react-router-dom';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
@@ -109,10 +108,6 @@ class MatchesForm extends Component {
     }
   }
 
-  reset() {
-    this.setState(initialState);
-  }
-
   redirect() {
     this.props.history.push('/matches');
   }
@@ -125,8 +120,6 @@ class MatchesForm extends Component {
   }
 
   render() {
-    const store = this.props.foosballStore;
-
     const subheaderStyle = {
       fontWeight: '800',
     };

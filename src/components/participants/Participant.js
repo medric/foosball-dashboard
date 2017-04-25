@@ -2,7 +2,6 @@ import React from 'react';
 import Badge from 'material-ui/Badge';
 import { TableRow, TableRowColumn }
   from 'material-ui/Table';
-import FlatButton from 'material-ui/FlatButton';
 
 /**
  * Displays a participant item
