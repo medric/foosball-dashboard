@@ -5,6 +5,7 @@ import { Provider } from 'mobx-react';
 import Routes from './components/Routes';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FoosballStore from './stores/FoosballStore';
+import muiTheme from './theme';
 
 const foosballStore = new FoosballStore();
 
@@ -15,7 +16,7 @@ import './style/index.css';
 const stores = { foosballStore };
 
 ReactDOM.render(
-  <MuiThemeProvider>  
+  <MuiThemeProvider muiTheme={muiTheme}>  
     <Provider {...stores}>
         <Router>
           <Routes />

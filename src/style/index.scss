@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+h2 {
+  color: #333;
+}
+
 .container {
   display: flex;
 }
@@ -11,11 +15,15 @@ body {
 .column {
   flex-direction: column;
 }
-
+    
 .fs-form {
   width: 500px;
   margin: auto;
   
+  h2 {
+    text-align: center;
+  }
+
   form {
     width: 100%;
 
@@ -24,6 +32,15 @@ body {
       margin-top: 10px;       
     }
   }
+}
+
+.form-button {
+  margin-top: 30px;
+}
+
+.fs-list {
+    width: 90%;
+    margin: auto;
 }
 
 .Select-menu-outer {

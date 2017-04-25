@@ -7,9 +7,17 @@ import shortid from 'shortid';
 
 const initialState = {
   name: '',
-  participantAdded: false,
+  showSnackbar: false,
+  snackbarMessage: '',
+  isValid: false,
 }
 
+/**
+ * Displays a form to add a match result
+ * 
+ * @class ParticipantsForm
+ * @extends {Component}
+ */
 class ParticipantsForm extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +27,7 @@ class ParticipantsForm extends Component {
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
   reset() {
@@ -30,15 +39,20 @@ class ParticipantsForm extends Component {
   }
 
   handleTouchTap() {
-    if (this.state.name !== '') {
-      // Adds new participant
+    if (this.validate()) {
+      // Adds the new participant
       const { name } = this.state;
-      this.props.foosballStore.addParticipant({
-        _id: shortid.generate(),
-        name,
-      });
-
-      this.setState({participantAdded: true});
+      try {
+         this.props.foosballStore.addParticipant({
+          _id: shortid.generate(),
+          name,
+        });
+        this.setState({snackbarMessage: 'Participant added', showSnackbar: true, isValid: true});
+      } catch (e) {
+        this.setState({snackbarMessage: e.message, showSnackbar: true});
+      }
+    } else {
+      this.setState({snackbarMessage: 'Please check the inputs', showSnackbar: true});
     }
   }
 
@@ -46,32 +60,30 @@ class ParticipantsForm extends Component {
     this.reset();
   }
 
+  validate() {
+    return this.state.name !== '';
+  }
+
   render() {
     const buttonStyle = {
-      marginTop: '10px'
+      marginTop: '30px'
     };
-
-    let options = {
-      hintText: 'Participant name',
-      value: this.state.name, 
-    }
-    
-    if (this.state.name === '') {
-      options = {...options, ...{ errorText: 'This field is required' }};
-    }
-
+  
     return (
       <div className="participants-form fs-form container column">
-        <form>
+        <h2>Add a participant</h2>
+        <form onSubmit={(e) => e.preventDefault()}>
           <TextField
-            {...options}
-            onChange={this.handleChange}
+              hintText="Participant name"
+              value={this.state.name}
+              errorText={this.state.name === '' ? 'Please enter a name' : ''}
+              onChange={this.handleChange}
           /><br />
         </form>
         <RaisedButton label="add participant" primary={true} onTouchTap={this.handleTouchTap} style={buttonStyle}/>
         <Snackbar
-          open={this.state.participantAdded}
-          message="Participant added"
+          open={this.state.showSnackbar}
+          message={this.state.snackbarMessage}
           autoHideDuration={1000}
           onRequestClose={this.handleRequestClose}
         />

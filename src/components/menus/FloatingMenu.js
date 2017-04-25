@@ -3,6 +3,9 @@ import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
+/**
+ * Displays a floating menu to navigate
+ */
 const FloatingMenu = (props) => {
     const { push } = props;
     const handleTouchTap = (path) => {

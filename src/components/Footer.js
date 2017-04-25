@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import FloatingMenu from './FloatingMenu';
+import FloatingMenu from './menus/FloatingMenu';
 
 import '../style/Footer.css';
 
+/**
+ * 
+ * Displays the footer
+ * @class Footer
+ * @extends {Component}
+ */
 class Footer extends Component {
     constructor(props) {
         super(props);

@@ -1,16 +1,14 @@
 footer {
   position: fixed;
   bottom: 20px; }
-
-footer .fab {
-  margin: 0px;
-  top: auto;
-  right: 20px;
-  bottom: 20px;
-  left: auto;
-  position: fixed; }
-
-footer .floating-menu {
-  position: fixed;
-  right: 10px;
-  bottom: 100px; }
+  footer .fab {
+    margin: 0px;
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed; }
+  footer .floating-menu {
+    position: fixed;
+    right: 10px;
+    bottom: 100px; }

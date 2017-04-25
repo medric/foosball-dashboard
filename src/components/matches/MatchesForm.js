@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
 import Select from 'react-select';
+import { yellow500 } from 'material-ui/styles/colors';
 
 import '../../style/MatchesForm.css';
 
@@ -14,7 +15,9 @@ const initialState = {
   team0: [],
   team1: [],
   winner: '',
-  matchAdded: false,
+  showSnackbar: false,
+  snackbarMessage: '',
+  isValid: false,
 }
 
 const winnerOptions = [
@@ -28,6 +31,11 @@ const winnerOptions = [
   }
 ];
 
+/**
+ * Displays a form to add a match result
+ * @class MatchesForm
+ * @extends {Component}
+ */
 class MatchesForm extends Component {
 
   constructor(props) {
@@ -42,6 +50,15 @@ class MatchesForm extends Component {
     this.redirect = this.redirect.bind(this);
   }
 
+  componentDidMount() {
+    const store = this.props.foosballStore;
+
+    // Reactive options
+    this.setState({
+      participantsOptions: store.participantsSelectOptions,
+    });
+  }
+
   reset() {
     this.setState(initialState);
   }
@@ -54,27 +71,40 @@ class MatchesForm extends Component {
   }
 
   handleSelectChange(key, value) {
+    const newValue = Array.isArray(value) ? 
+      value.reduce((acc, v) => acc.concat(v.value), []) : value;
+
     this.setState({
-      [key]: value,
+      [key]: newValue
     });
   }
 
   handleTouchTap() {
-    const { date, team0, team1, winner } = this.state;
-    const match = {
-      date: +date,
-      team0,
-      team1,
-      winner,
-    };
-    
-    // Adds a match
-    this.props.foosballStore.addMatch(match);
-    this.setState({matchAdded: true});
+    if (this.validate()) {
+      const { date, team0, team1, winner } = this.state;
+      const match = {
+        date: +date,
+        team0,
+        team1,
+        winner,
+      };
+      
+      // Adds a match
+      try {
+        this.props.foosballStore.addMatch(match);
+        this.setState({snackbarMessage: 'Match result added', showSnackbar: true, isValid: true});
+      } catch (e) {
+        this.setState({snackbarMessage: e.message, showSnackbar: true});
+      }
+    } else {
+      this.setState({snackbarMessage: 'Please check the inputs', showSnackbar: true});
+    }
   }
 
   handleRequestClose() {
-    this.reset();
+    if (this.state.isValid) {
+      this.reset();
+    }
   }
 
   reset() {
@@ -85,29 +115,43 @@ class MatchesForm extends Component {
     this.props.history.push('/matches');
   }
 
+  validate() {
+    return this.state.date && 
+            this.state.team0.length > 0 &&
+            this.state.team1.length > 0 &&
+            this.state.winner !== '';
+  }
+
   render() {
     const store = this.props.foosballStore;
-    const participants = store.participantsSelectOptions;
 
     const subheaderStyle = {
-      fontWeight: '800'
+      fontWeight: '800',
     };
 
-    const buttonStyle = {
+    const button1Style = {
+      marginTop: '60px',
+    };
+
+    const button2Style = {
       marginTop: '10px',
     };
 
     return (
       <div className="matches-form fs-form container column">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <h2>Add a match result</h2>
           <Subheader style={subheaderStyle}>Match date</Subheader>
-          <DatePicker hintText="Pick a date" value={this.state.date} onChange={this.pickDate}/>
+          <DatePicker 
+            hintText="Pick a date" 
+            value={this.state.date} 
+            onChange={this.pickDate} />
           <Subheader style={subheaderStyle}>Team 1</Subheader>
           <Select
             name="team-0"
             multi
             value={this.state.team0}
-            options={participants}
+            options={this.state.participantsOptions}
             onChange={(value) => this.handleSelectChange('team0', value)}
           />
           <Subheader style={subheaderStyle}>Team 2</Subheader>
@@ -115,7 +159,7 @@ class MatchesForm extends Component {
             name="team-1"
             multi
             value={this.state.team1}
-            options={participants}
+            options={this.state.participantsOptions}
             onChange={(value) => this.handleSelectChange('team1', value)}
           />
           <Subheader style={subheaderStyle}>Winner</Subheader>
@@ -126,11 +170,21 @@ class MatchesForm extends Component {
             onChange={(value) => this.handleSelectChange('winner', value)}
           />  
         </form>
-        <RaisedButton label="add result" onTouchTap={this.handleTouchTap} style={buttonStyle}/>
-        <RaisedButton label="see matches lists" onTouchTap={this.redirect}/>
+        <RaisedButton 
+          label="add result" 
+          primary={true}
+          labelColor="#FFF"
+          onTouchTap={this.handleTouchTap} 
+          style={button1Style}/>
+        <RaisedButton 
+          label="see matches lists" 
+          backgroundColor={yellow500}
+          labelColor="#FFF"
+          onTouchTap={this.redirect} 
+          style={button2Style}/>
         <Snackbar
-          open={this.state.matchAdded}
-          message="Match added"
+          open={this.state.showSnackbar}
+          message={this.state.snackbarMessage}
           autoHideDuration={1000}
           onRequestClose={this.handleRequestClose}
         />

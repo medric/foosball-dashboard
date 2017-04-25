@@ -4,11 +4,14 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
   from 'material-ui/Table';
 import Match from './Match';
 
+/**
+ * Displays the results 
+ */
 const MatchesList = (props) => {
     const store = props.foosballStore;
 
     return (
-        <div className="matches-list container column">
+        <div className="matches-list fs-list container column">
             <h2>Matches</h2>
             <Table
                 selectable={false}>
@@ -22,7 +25,7 @@ const MatchesList = (props) => {
                 </TableHeader>
                 <TableBody>
                     { 
-                        store.matches.map(
+                        store.matchesByDate.map(
                             (match, index) => <Match key={index} {...match} />
                         ) 
                     }
