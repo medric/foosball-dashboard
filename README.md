@@ -14,7 +14,7 @@ the application.
 
 Run 
 ```
-  npm install
+  npm i
   npm start
 ```
 <br>
