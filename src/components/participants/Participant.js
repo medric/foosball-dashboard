@@ -25,7 +25,7 @@ const Participant = ({ name, wins, losses, ratio, remove }) => {
             </TableRowColumn>
              <TableRowColumn>
                 <Badge
-                    badgeContent={Math.round(ratio, 10)}
+                    badgeContent={ratio.toFixed(1)}
                     secondary={true}
                 />
             </TableRowColumn>
