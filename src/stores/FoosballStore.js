@@ -79,7 +79,6 @@ class FoosballStore {
         };
 
         data = this.getFromStorage(data);
-        console.log(data);
         extendObservable(this, data);
     }
 
