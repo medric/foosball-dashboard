@@ -13,6 +13,7 @@ const ParticipantsList = (props) => {
     return (
         <div className="matches-list fs-list container column">
             <h2>Participants</h2>
+            
             <Table
                 selectable={false}>
                 <TableHeader displaySelectAll={false}>

@@ -2,7 +2,7 @@
 This project is a dashboard which allow the users to save and manage foosball matches results.
 It was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and 
 uses [MobX](https://mobx.js.org/) under the hood to handle state management, scalability and data reactivity through
-the application.
+the application. Furthermore, the data is persisted into localstorage, so it will not be lost when refreshing.
 
 ## Functionalities
 - Add participants
@@ -17,6 +17,7 @@ The application is live: [https://terem-foosball.herokuapp.com/](https://terem-f
 To run it locally, run:
 ```
   npm i
+  npm run build
   npm run start-local
 ```
 
