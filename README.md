@@ -12,6 +12,8 @@ the application.
 
 ## Usage & Installation 
 
+The application is live: [https://terem-foosball.herokuapp.com/](https://terem-foosball.herokuapp.com/)
+
 Run 
 ```
   npm i
