@@ -14,13 +14,13 @@ the application.
 
 The application is live: [https://terem-foosball.herokuapp.com/](https://terem-foosball.herokuapp.com/)
 
-Run 
+To run it locally, run:
 ```
   npm i
   npm start
 ```
-<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 
 ## Test
 
