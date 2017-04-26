@@ -17,7 +17,7 @@ The application is live: [https://terem-foosball.herokuapp.com/](https://terem-f
 To run it locally, run:
 ```
   npm i
-  npm start
+  npm run start-local
 ```
 
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

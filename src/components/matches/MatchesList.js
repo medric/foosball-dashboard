@@ -25,7 +25,7 @@ const MatchesList = (props) => {
                 </TableHeader>
                 <TableBody>
                     { 
-                        store.matchesByDate.map(
+                        store.matchesByDate().map(
                             (match, index) => <Match key={index} {...match} />
                         ) 
                     }

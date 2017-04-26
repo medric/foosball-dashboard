@@ -55,8 +55,10 @@ class MatchesForm extends Component {
 
     // Reactive options
     this.setState({
-      participantsOptions: store.participantsSelectOptions,
+      participantsOptions: store.participantsSelectOptions().slice(),
     });
+
+    console.log(store.participantsSelectOptions().slice());
   }
 
   reset() {

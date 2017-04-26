@@ -29,9 +29,6 @@ const Participant = ({ name, wins, losses, ratio, remove }) => {
                     secondary={true}
                 />
             </TableRowColumn>
-            <TableRowColumn>
-                <FlatButton label="Remove" />
-            </TableRowColumn>
         </TableRow>
     )
 }

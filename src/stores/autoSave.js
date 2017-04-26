@@ -5,7 +5,7 @@ export default function autoSave(store, save) {
   mobx.autorun(() => {
     // Runs every time any observable property
     // on the store is updated.
-    const json = JSON.stringify(mobx.toJS(store));
+    const json = JSON.stringify(store);
     if (!firstRun) {
       save(json);
     }

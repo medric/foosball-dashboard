@@ -14,10 +14,10 @@ class FoosballStore {
     }
 
     load() {
-        const data = {
-            matches: [],
+        let data = {
             participants: [],
-            get participantsSelectOptions() {
+            matches: [],
+            participantsSelectOptions() {
                 const options = [];
                 this.participants.map((participant, index) => {
                     options[index] = {
@@ -73,16 +73,29 @@ class FoosballStore {
                     ratio: losses === 0 ? wins : (wins / losses),
                 }
             },
-            get matchesByDate() {
+            matchesByDate() {
                 return this.matches.sort((a, b) => a.date - b.date);
             }
-        };        
+        };
 
+        data = this.getFromStorage(data);
+        console.log(data);
         extendObservable(this, data);
     }
 
     save(json) {
         localStorage.setItem('mobx_store', json);
+    }
+
+    getFromStorage(defaultObs) {
+        const fromStorage = localStorage.getItem('mobx_store');
+    
+        // Retrieve data from localStorage
+        if (fromStorage) {
+           return {...defaultObs, ...JSON.parse(fromStorage)};
+        } else {
+            return defaultObs;
+        }
     }
 }
 

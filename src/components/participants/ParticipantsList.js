@@ -21,7 +21,6 @@ const ParticipantsList = (props) => {
                         <TableHeaderColumn>Wins</TableHeaderColumn>
                         <TableHeaderColumn>Losses</TableHeaderColumn>
                         <TableHeaderColumn>Win/Loss ratio</TableHeaderColumn>
-                        <TableHeaderColumn></TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
